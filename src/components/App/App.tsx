@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import ReactPaginate from 'react-paginate';
 import css from './App.module.css';
 import SearchBar from '../SearchBar/SearchBar.tsx';
@@ -32,6 +32,7 @@ export default function App() {
     queryFn: () => fetchMovies(query, page),
     enabled: Boolean(query),
     retry: 1,
+    placeholderData: keepPreviousData,
   });
 
   const movies = data?.results ?? [];
